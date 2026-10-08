@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>belajar-k8s — Materi Belajar Kubernetes</title>
+<meta name="description" content="Materi belajar orkestrasi Kubernetes: k3s, Deployment, Ingress, PVC, ConfigMap, monitoring, ArgoCD. Bahasa Indonesia." />
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0B1526;color:#E7EEF7;font-family:Inter,'Segoe UI',system-ui,Arial}
+a{color:#FF8A00}.wrap{max-width:960px;margin:0 auto;padding:0 20px 48px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid #22365A}
+header b{font-size:18px}nav a{margin-left:16px;color:#BFD2EC;text-decoration:none;font-size:14px;font-weight:600}
+.hero{padding:56px 0 20px}.hero h1{font-size:clamp(30px,5vw,46px);margin:0 0 10px;letter-spacing:-.02em}
+.hero h1 span{color:#FF8A00}.lead{color:#9FB4CE;max-width:62ch;line-height:1.7}
+.btn{background:#FF8A00;color:#13100A;font-weight:800;padding:12px 22px;border-radius:10px;text-decoration:none;display:inline-block;margin:6px 10px 6px 0}
+.btn.ghost{background:transparent;border:1px solid #2A3F5F;color:#E7EEF7}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pill{border:1px solid #2A3F5F;border-radius:100px;padding:6px 14px;font-size:12px;color:#BFD2EC;font-family:monospace}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.card{background:#111F36;border:1px solid #22365A;border-radius:14px;padding:20px}
+.card .no{font-family:monospace;color:#FF8A00;font-weight:800;font-size:13px}
+.card h3{margin:6px 0}.card p{color:#9FB4CE;font-size:14px;line-height:1.65;margin:0 0 12px}
+.card code{font-size:12px;color:#8DBDFF}
+.card a.btn{padding:9px 16px;font-size:13px}
+h2.sec{margin:44px 0 4px;font-size:22px}.sub{color:#6B84A3;font-size:14px;margin:0}
+pre{background:#0E1B31;border:1px solid #22365A;border-radius:12px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;color:#BFD2EC;margin-top:16px}
+.warn{background:#2a1a08;border:1px solid #7a4a12;border-radius:12px;padding:14px 16px;font-size:13.5px;color:#f0c98a;margin-top:16px;line-height:1.6}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid #22365A;color:#6B84A3;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+<header><b>☸️ belajar-k8s</b><nav><a href="https://github.com/dulkemot/belajar-k8s">Repo →</a><a href="https://github.com/dulkemot">dulkemot</a></nav></header>
+
+<div class="hero">
+<h1>Belajar Kubernetes <span>dari Nol</span></h1>
+<p class="lead">Materi orkestrasi K8s berbahasa Indonesia, dipraktikkan di cluster k3s single-node. Dari Deployment pertama sampai monitoring & GitOps.</p>
+<p><a class="btn" href="https://github.com/dulkemot/belajar-k8s">Buka Repo →</a><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/sample-web">Mulai Latihan 1 →</a></p>
+<div class="pills"><span class="pill">k3s 192.168.0.100</span><span class="pill">Prometheus + Grafana</span><span class="pill">Postgres + Redis</span><span class="pill">ArgoCD</span></div>
+</div>
+
+<h2 class="sec">Roadmap 6 Latihan</h2>
+<p class="sub">Urut dari dasar sampai deploy API beneran.</p>
+<div class="grid">
+<div class="card"><div class="no">LATIHAN 1–2</div><h3>Namespace + Deployment + Service + Ingress</h3><p>Deploy nginx sebagai <code>sample-web</code>. Kenalan dengan Pod, Service, dan akses via Ingress.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/sample-web">Lihat YAML →</a></div>
+<div class="card"><div class="no">LATIHAN 3</div><h3>Aplikasi Real + PVC</h3><p>Uptime Kuma dengan PersistentVolumeClaim — data tetap ada walau Pod restart.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/uptime-kuma">Lihat YAML →</a></div>
+<div class="card"><div class="no">LATIHAN 4</div><h3>Konten via ConfigMap</h3><p>Company profile yang konten HTML-nya disuntik dari ConfigMap. Ubah konten tanpa rebuild image.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/company">Lihat YAML →</a></div>
+<div class="card"><div class="no">LATIHAN 5</div><h3>Monitoring Agents</h3><p>node-exporter DaemonSet + kube-state-metrics + RBAC, expose via NodePort.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/monitoring-agents">Lihat YAML →</a></div>
+<div class="card"><div class="no">LATIHAN 6</div><h3>API + Secret</h3><p>API Node.js + Secret (database di luar cluster). ArgoCD Application pakai <code>ignoreDifferences</code> agar Secret tak tertimpa.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/apps/apidb">Lihat YAML →</a></div>
+<div class="card"><div class="no">PENDUKUNG</div><h3>Monitoring & Source Code</h3><p>Config Prometheus + systemd unit di CT monitoring, dan source API mini Node.js.</p><a class="btn ghost" href="https://github.com/dulkemot/belajar-k8s/tree/main/monitoring">Lihat Config →</a></div>
+</div>
+
+<h2 class="sec">Struktur Repo</h2>
+<pre>apps/
+  sample-web/         # Latihan 1-2: Namespace + Deployment + Service + Ingress
+  uptime-kuma/        # Latihan 3: aplikasi real + PVC
+  company/            # Latihan 4: konten via ConfigMap
+  monitoring-agents/  # Latihan 5: DaemonSet + RBAC + NodePort
+  apidb/              # Latihan 6: API + Secret, DB di luar cluster
+apidb/                # source API mini (Node.js)
+company/index.html    # source konten company profile
+monitoring/           # config Prometheus & systemd unit</pre>
+
+<div class="warn">🔒 File <code>apps/apidb/apidb.yaml</code> memakai password <b>placeholder</b> (<code>CHANGEME-*</code>). Password asli hanya hidup di cluster sebagai Secret live dan <b>tidak di-commit</b>.</div>
+
+<footer><span>© 2026 dulkemot — materi belajar Kubernetes</span><span><a href="https://dulkemot.github.io/portfolio/">Portfolio</a> • <a href="https://github.com/dulkemot/belajar-k8s">Repo</a></span></footer>
+</div></body>
+</html>
