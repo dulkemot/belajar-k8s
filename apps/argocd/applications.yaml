@@ -1,0 +1,81 @@
+# Latihan 7 (lanjutan): onboarding semua aplikasi ke ArgoCD.
+# Pola: satu Application per folder = satu tim bisa memiliki satu aplikasi.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: uptime-kuma
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/uptime-kuma
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: uptime
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: company
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/company
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: company
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-agents
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/monitoring-agents
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+---
+# apidb: Secret live berisi password ASLI, Git berisi placeholder.
+# ignoreDifferences = ArgoCD tidak menyentuh Secret (drift yang disetujui).
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apidb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/apidb
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apidb
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: apidb
+      jsonPointers:
+        - /data
