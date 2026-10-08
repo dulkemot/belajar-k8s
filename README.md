@@ -1,5 +1,7 @@
 # belajar-k8s — materi belajar orkestrasi Kubernetes
 
+🌐 **Web materi:** https://dulkemot.github.io/belajar-k8s/
+
 Cluster: k3s single-node di VM DevOps (`192.168.0.100`).
 Monitoring: CT `192.168.0.102` (Prometheus + Grafana).
 Database: CT `192.168.0.103` (Postgres + Redis).
