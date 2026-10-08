@@ -76,3 +76,13 @@ spec:
                 name: uptime-kuma
                 port:
                   number: 3001
+    - host: status.brait.id
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: 3001

@@ -17,6 +17,16 @@ spec:
                 name: argocd-server
                 port:
                   number: 80
+    - host: argo.brait.id
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
 ---
 # Application = "langganan Git": repo + path + tujuan + kebijakan sync.
 # automated prune+selfHeal = koreksi otomatis jika cluster diubah manual.
