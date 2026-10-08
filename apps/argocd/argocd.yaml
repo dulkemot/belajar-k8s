@@ -1,0 +1,42 @@
+# Latihan 7: expose ArgoCD + Application GitOps pertama (sample-web)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: argocd.192.168.0.100.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
+---
+# Application = "langganan Git": repo + path + tujuan + kebijakan sync.
+# automated prune+selfHeal = koreksi otomatis jika cluster diubah manual.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-web
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/sample-web
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: belajar
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
