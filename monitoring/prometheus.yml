@@ -17,6 +17,27 @@ scrape_configs:
         labels:
           node: devops
 
+  # CT monitoring itu sendiri (localhost CT .102)
+  - job_name: node-monitoring
+    static_configs:
+      - targets: ['192.168.0.102:9100']
+        labels:
+          node: monitoring
+
+  # CT database (.103)
+  - job_name: node-db
+    static_configs:
+      - targets: ['192.168.0.103:9100']
+        labels:
+          node: ctdb
+
+  # Host Proxmox .201 (node-exporter bawaan kube-prometheus-stack)
+  - job_name: node-host
+    static_configs:
+      - targets: ['192.168.0.201:9100']
+        labels:
+          node: proxmox-host
+
   # Status objek Kubernetes: Pod Running?, Deployment ready? (via kube-state-metrics)
   - job_name: k8s-state
     static_configs:
