@@ -1,0 +1,67 @@
+# Latihan 4: Company profile - konten dari ConfigMap, bukan dari image
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: company
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company-web
+  namespace: company
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: company-web
+  template:
+    metadata:
+      labels:
+        app: company-web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            # timpa index.html bawaan nginx dengan file dari ConfigMap
+            - name: site
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: site
+          configMap:
+            name: company-site
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: company-web
+  namespace: company
+spec:
+  selector:
+    app: company-web
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: company-web
+  namespace: company
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: company.192.168.0.100.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: company-web
+                port:
+                  number: 80

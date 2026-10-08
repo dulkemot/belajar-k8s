@@ -1,0 +1,23 @@
+# Latihan 5 (lanjutan): scrape config Prometheus di CT monitoring.
+# Konsep: tiap "job" = satu sumber metrics yang di-pull tiap 15 detik.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Prometheus memonitor dirinya sendiri (default bawaan)
+  - job_name: prometheus
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
+  # Mesin VM DevOps: CPU, memori, disk, network (via DaemonSet node-exporter)
+  - job_name: node-devops
+    static_configs:
+      - targets: ['192.168.0.100:31000']
+        labels:
+          node: devops
+
+  # Status objek Kubernetes: Pod Running?, Deployment ready? (via kube-state-metrics)
+  - job_name: k8s-state
+    static_configs:
+      - targets: ['192.168.0.100:31001']

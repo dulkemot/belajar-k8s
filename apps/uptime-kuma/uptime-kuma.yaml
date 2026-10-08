@@ -1,0 +1,78 @@
+# Latihan 3: Uptime Kuma - status monitoring, single container + PVC
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: uptime
+---
+# PVC: database SQLite Kuma harus disimpan di disk agar tidak hilang saat Pod restart.
+# Konsep: volume = "flashdisk" yang ditempel ke Pod.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-data
+  namespace: uptime
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma
+  namespace: uptime
+spec:
+  replicas: 1 # SQLite tidak bisa di-replika; 1 saja
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+        - name: kuma
+          image: louislam/uptime-kuma:1.23.16
+          ports:
+            - containerPort: 3001
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: uptime-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma
+  namespace: uptime
+spec:
+  selector:
+    app: uptime-kuma
+  ports:
+    - port: 3001
+      targetPort: 3001
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: uptime-kuma
+  namespace: uptime
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: uptime.192.168.0.100.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: 3001
