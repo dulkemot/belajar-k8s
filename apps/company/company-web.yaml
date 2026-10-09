@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: belajar/company-web:v2
+          image: belajar/company-web:v3
           ports:
             - containerPort: 80
 ---
