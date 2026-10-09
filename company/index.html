@@ -3,151 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NusaTech — Solusi Digital untuk Bisnis Anda</title>
-<meta name="description" content="NusaTech: jasa pembuatan website, aplikasi, dan infrastruktur cloud di Indonesia.">
+<title>NusaTech — Studio Web & Cloud Jakarta</title>
+<meta name="description" content="NusaTech adalah studio pembuatan website company profile, toko online, dan aplikasi bisnis. Berbasis di Bandung, melayani seluruh Indonesia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b1220;--bg2:#111a2e;--card:#16213a;--line:#24314f;--txt:#e8eef7;--mut:#9fb0c9;--acc:#38bdf8;--acc2:#818cf8;--ok:#34d399}
+:root{
+  --cream:#faf6ef; --ink:#1c1917; --mut:#78716c;
+  --brand:#c2410c; --brand-d:#9a3412; --sun:#fbbf24;
+  --card:#fffdf8; --line:#e7e0d2; --dark:#1c1917;
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Fraunces',Georgia,serif}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-/* NAV */
-nav{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-size:1.3rem;font-weight:800}.logo span{color:var(--acc)}
-.links{display:flex;gap:22px;align-items:center}
-.links a{color:var(--mut);font-size:.95rem}.links a:hover{color:var(--txt)}
-.btn{display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04121f!important;font-weight:700;padding:10px 22px;border-radius:10px;border:0;cursor:pointer;font-size:.95rem}
-.btn:hover{filter:brightness(1.1)}
-.burger{display:none;background:none;border:0;color:var(--txt);font-size:1.6rem;cursor:pointer}
-/* HERO */
-.hero{padding:90px 0 70px;background:radial-gradient(800px 400px at 70% -50px,rgba(56,189,248,.18),transparent),radial-gradient(600px 300px at 10% 100px,rgba(129,140,248,.15),transparent)}
-.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin-bottom:16px}
-.hero h1 span{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--mut);max-width:600px;margin-bottom:28px;font-size:1.05rem}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-.ghost{border:1px solid var(--line);padding:10px 22px;border-radius:10px;color:var(--txt)!important}
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:50px 0}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
-.stat b{font-size:1.9rem;color:var(--acc);display:block}
-.stat small{color:var(--mut)}
-/* SECTION */
-section{padding:64px 0}
-h2.sec{text-align:center;font-size:1.9rem;margin-bottom:8px}
-p.sub{text-align:center;color:var(--mut);margin-bottom:36px}
-/* SERVICES */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;transition:transform .2s,border-color .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--acc)}
-.card .ico{font-size:2rem;margin-bottom:12px}
-.card h3{margin-bottom:8px}.card p{color:var(--mut);font-size:.93rem}
-.card .price{color:var(--ok);font-weight:700;margin-top:12px;display:block}
-/* PORTFOLIO */
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.pf{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
-.pf .thumb{height:170px;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:rgba(255,255,255,.85)}
-.pf .body{padding:18px 20px}.pf .body small{color:var(--acc);font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}
-/* TESTI */
-.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.t{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:22px;font-size:.93rem}
-.t p{color:var(--mut);margin-bottom:14px}.t b{display:block}.t small{color:var(--acc)}
-.stars{color:#fbbf24;margin-bottom:10px;letter-spacing:2px}
-/* CONTACT */
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
-label{display:block;font-size:.85rem;color:var(--mut);margin:12px 0 4px}
-input,textarea,select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:10px 12px;font-size:.95rem;font-family:inherit}
-input:focus,textarea:focus,select:focus{outline:1px solid var(--acc)}
-.info div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
-.wa{position:fixed;right:20px;bottom:20px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:60}
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:.9rem;text-align:center}
-/* REVEAL */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+/* ---- top bar ---- */
+.topbar{background:var(--dark);color:#f5f0e6;font-size:.82rem;padding:8px 0}
+.topbar .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.topbar b{color:var(--sun)}
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem}
+.logo svg{width:34px;height:34px}
+.links{display:flex;gap:24px;align-items:center;font-size:.93rem;font-weight:500}
+.links a{color:#44403c}.links a:hover{color:var(--brand)}
+.btn{display:inline-block;background:var(--brand);color:#fff!important;font-weight:700;padding:11px 24px;border-radius:999px;border:0;cursor:pointer;font-size:.93rem;transition:transform .15s,background .15s}
+.btn:hover{background:var(--brand-d);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--ink)}
+/* ---- hero ---- */
+.hero{position:relative;overflow:hidden;background:var(--dark);color:#faf6ef}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:kb 18s infinite}
+.slides img:nth-child(2){animation-delay:6s}.slides img:nth-child(3){animation-delay:12s}
+@keyframes kb{0%{opacity:0;transform:scale(1)}4%{opacity:1}33%{opacity:1}38%{opacity:0;transform:scale(1.12)}100%{opacity:0;transform:scale(1.12)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(12,8,4,.88) 30%,rgba(12,8,4,.45) 60%,rgba(12,8,4,.25))}
+.hero-in{position:relative;z-index:2;padding:110px 0 100px;max-width:1140px;margin:0 auto;padding-left:22px;padding-right:22px}
+.kicker{display:inline-block;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.5);color:var(--sun);font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.05;max-width:14ch;margin-bottom:18px}
+.hero h1 em{font-style:italic;color:var(--sun)}
+.hero p.lead{color:#d6cfc0;max-width:560px;font-size:1.08rem;margin-bottom:30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.btn.light{background:var(--cream);color:var(--ink)!important}
+.btn.ghostb{background:transparent;border:1.5px solid rgba(250,246,239,.5);color:#faf6ef!important}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;font-size:.9rem;color:#d6cfc0}
+.hero-meta b{display:block;font-size:1.3rem;color:#fff}
+/* ---- marquee ---- */
+.marquee{background:var(--sun);border-block:2px solid var(--dark);overflow:hidden;white-space:nowrap;padding:12px 0;font-weight:800;letter-spacing:.5px}
+.marquee span{display:inline-block;padding:0 26px;animation:mq 22s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---- sections ---- */
+section{padding:76px 0}
+.sec-tag{color:var(--brand);font-weight:800;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+h2.title{font-size:clamp(1.7rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:12px;max-width:22ch}
+p.sub{color:var(--mut);max-width:620px;margin-bottom:40px}
+/* layanan */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 26px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 18px 40px -18px rgba(28,25,23,.25)}
+.svc .num{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--line);line-height:1}
+.svc h3{margin:10px 0 8px;font-size:1.15rem}
+.svc p{color:var(--mut);font-size:.92rem}
+.svc ul{list-style:none;margin-top:14px;font-size:.88rem;color:#57534e}
+.svc ul li::before{content:"✓ ";color:var(--brand);font-weight:800}
+.svc .price{display:block;margin-top:14px;font-weight:800;color:var(--brand-d)}
+/* proses */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8px}
+.step{padding:0 18px 0 0;position:relative}
+.step:not(:last-child)::after{content:"→";position:absolute;right:2px;top:26px;color:var(--brand);font-weight:800}
+.step .dot{width:52px;height:52px;border-radius:50%;background:var(--dark);color:var(--sun);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;margin-bottom:14px}
+.step h4{margin-bottom:6px}.step p{font-size:.88rem;color:var(--mut)}
+/* portfolio */
+.pfgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.pf{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.pf img{width:100%;height:230px;object-fit:cover;display:block;filter:saturate(.92)}
+.pf .b{padding:22px 24px}
+.pf .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream);background:var(--brand);padding:4px 12px;border-radius:999px;margin-bottom:10px}
+.pf q{display:block;font-style:italic;color:#44403c;margin:10px 0}
+.pf cite{font-style:normal;font-size:.85rem;color:var(--mut)}
+/* harga */
+.price3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.pr{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px 28px}
+.pr.hot{background:var(--dark);color:#faf6ef;border-color:var(--dark);transform:scale(1.03)}
+.pr.hot ul li{color:#d6cfc0}
+.pr h3{font-size:1.1rem;margin-bottom:4px}.pr .rp{font-family:'Fraunces',serif;font-size:2.1rem;margin:8px 0 2px}.pr small{color:var(--mut)}
+.pr ul{list-style:none;margin:20px 0;font-size:.9rem}
+.pr ul li{padding:7px 0;border-bottom:1px dashed var(--line)}
+.pr ul li::before{content:"✓ ";color:var(--brand);font-weight:800}
+.pr.hot ul li::before{color:var(--sun)}
+/* tim */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tm{text-align:center}
+.tm img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50% 50% 20px 20px;border:3px solid var(--sun);background:var(--line)}
+.tm b{display:block;margin-top:10px}.tm small{color:var(--mut)}
+/* testimoni slider */
+.slider{background:var(--dark);border-radius:24px;color:#faf6ef;padding:46px;position:relative;overflow:hidden}
+.slider .q{font-family:'Fraunces',serif;font-size:clamp(1.2rem,2.5vw,1.7rem);line-height:1.4;min-height:120px}
+.slider .who{margin-top:18px;color:var(--sun);font-weight:700}
+.snav{display:flex;gap:10px;margin-top:22px}
+.snav button{background:transparent;border:1.5px solid rgba(250,246,239,.4);color:#faf6ef;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.2rem}
+.snav button:hover{border-color:var(--sun);color:var(--sun)}
+.sdots{margin-left:auto;align-self:center;color:#a8a29e;font-size:.85rem}
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:18px 4px}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--brand);font-size:1.4rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--mut);margin-top:10px;font-size:.93rem;max-width:70ch}
+/* kontak */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+form{background:var(--dark);color:#faf6ef;border-radius:22px;padding:34px}
+form h3{font-size:1.4rem;margin-bottom:4px}form p{color:#a8a29e;font-size:.9rem;margin-bottom:8px}
+label{display:block;font-size:.82rem;color:#d6cfc0;margin:14px 0 5px}
+input,textarea,select{width:100%;background:#292524;border:1px solid #44403c;border-radius:10px;color:#faf6ef;padding:11px 13px;font-size:.95rem;font-family:inherit}
+input:focus,textarea:focus{outline:1.5px solid var(--sun)}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:14px;font-size:.93rem}
+.info-card b{display:block;margin-bottom:2px}
+/* footer */
+footer{background:var(--dark);color:#a8a29e;padding:40px 0 26px;font-size:.88rem}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;margin-bottom:26px}
+footer h5{color:#faf6ef;margin-bottom:10px}
+footer .copy{border-top:1px solid #44403c;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* wa */
+.wa{position:fixed;right:20px;bottom:20px;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 8px 24px rgba(0,0,0,.35);z-index:70}
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
 .rv.on{opacity:1;transform:none}
-/* RESPONSIVE */
-@media(max-width:860px){.grid3,.testi{grid-template-columns:1fr 1fr}.contact,.grid2{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg2);flex-direction:column;padding:16px;gap:14px;border-bottom:1px solid var(--line)}.links.open{display:flex}.burger{display:block}.grid3,.testi{grid-template-columns:1fr}}
+@media(max-width:900px){.grid3,.price3{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr;gap:22px}.step::after{display:none}.team{grid-template-columns:1fr 1fr}.contact,.pfgrid{grid-template-columns:1fr}footer .cols{grid-template-columns:1fr}}
+@media(max-width:640px){.links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--cream);flex-direction:column;padding:18px;gap:14px;border-bottom:1px solid var(--line)}.links.open{display:flex}.burger{display:block}.grid3,.price3,.team{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.hero-in{padding:80px 22px 70px}}
 </style>
 </head>
 <body>
+<div class="topbar"><div class="wrap"><span>📍 Bandung • Melayani seluruh Indonesia</span><span>Promo Oktober: <b>diskon 20%</b> semua paket website</span></div></div>
 <nav><div class="wrap nav-in">
-<div class="logo">Nusa<span>Tech</span></div>
+<a class="logo" href="#"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#1c1917"/><path d="M12 26c4-8 8-12 12-12s6 4 4 8c-2 5-8 8-12 8" stroke="#fbbf24" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="27" cy="14" r="3" fill="#c2410c"/></svg>NusaTech</a>
 <button class="burger" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
-<div class="links"><a href="#layanan">Layanan</a><a href="#portfolio">Portfolio</a><a href="#testimoni">Testimoni</a><a href="#kontak">Kontak</a><a class="btn" href="#kontak">Minta Penawaran</a></div>
+<div class="links"><a href="#layanan">Layanan</a><a href="#proses">Proses</a><a href="#portfolio">Portfolio</a><a href="#harga">Harga</a><a href="#kontak" class="btn">Minta Penawaran</a></div>
 </div></nav>
 
-<header class="hero"><div class="wrap">
-<h1>Bangun Kehadiran Digital <span>Bisnis Anda</span> Bersama NusaTech</h1>
-<p>Kami membuat website company profile, toko online, dan aplikasi kustom yang cepat, aman, dan mudah dikelola — dipercaya 120+ UMKM dan perusahaan di Indonesia sejak 2019.</p>
-<div class="hero-cta"><a class="btn" href="#kontak">Konsultasi Gratis</a><a class="ghost" href="#portfolio">Lihat Hasil Kerja</a></div>
-<div class="stats">
-<div class="stat rv"><b data-n="120">0</b><small>Klien Puas</small></div>
-<div class="stat rv"><b data-n="185">0</b><small>Proyek Selesai</small></div>
-<div class="stat rv"><b data-n="7">0</b><small>Tahun Pengalaman</small></div>
-<div class="stat rv"><b data-n="99">0</b><small>% Tepat Waktu</small></div>
-</div>
+<header class="hero">
+<div class="slides"><img src="assets/team.jpg" alt="Tim NusaTech"><img src="assets/office.jpg" alt="Kantor NusaTech"><img src="assets/meeting.jpg" alt="Diskusi proyek"></div>
+<div class="hero-in">
+<span class="kicker">Studio web • sejak 2019</span>
+<h1 class="serif">Website yang <em>bikin dagangan laku,</em> bukan sekadar online.</h1>
+<p class="lead">Kami merancang company profile, toko online, dan aplikasi yang dipikirkan dari sisi pembeli — cepat dibuka di HP, enak dibaca, dan gampang dihubungi. 120+ bisnis sudah membuktikannya.</p>
+<div class="hero-cta"><a class="btn" href="#kontak">Konsultasi Gratis →</a><a class="btn ghostb" href="#portfolio">Lihat hasil kerja</a></div>
+<div class="hero-meta"><div><b>120+</b>klien aktif</div><div><b>185</b>proyek selesai</div><div><b>4.9★</b>rating Google</div></div>
 </div></header>
 
+<div class="marquee"><span>COMPANY PROFILE ✦ TOKO ONLINE ✦ APLIKASI KASIR ✦ SISTEM ABSENSI ✦ TICKETING HELPDESK ✦ CLOUD &amp; SERVER ✦ COMPANY PROFILE ✦ TOKO ONLINE ✦ APLIKASI KASIR ✦ SISTEM ABSENSI ✦ TICKETING HELPDESK ✦ CLOUD &amp; SERVER ✦&nbsp;</span></div>
+
 <section id="layanan"><div class="wrap">
-<h2 class="sec">Layanan Kami</h2><p class="sub">Paket lengkap dari domain sampai maintenance</p>
+<div class="sec-tag">Layanan</div>
+<h2 class="title serif">Satu pintu untuk semua kebutuhan digital.</h2>
+<p class="sub">Tidak perlu sewa desainer, programmer, dan admin server sendiri-sendiri. Semua dikerjakan satu tim yang saling kenal.</p>
 <div class="grid3">
-<div class="card rv"><div class="ico">🌐</div><h3>Company Profile</h3><p>Website profil perusahaan modern, SEO-friendly, dilengkapi halaman layanan, galeri, dan formulir kontak.</p><span class="price">Mulai Rp 3,5 jt</span></div>
-<div class="card rv"><div class="ico">🛒</div><h3>Toko Online</h3><p>Katalog produk, keranjang, checkout transfer &amp; e-wallet, ongkir otomatis, dan dashboard admin.</p><span class="price">Mulai Rp 7 jt</span></div>
-<div class="card rv"><div class="ico">⚙️</div><h3>Aplikasi Kustom</h3><p>Sistem absensi, ticketing helpdesk, inventori, dan integrasi API sesuai alur bisnis Anda.</p><span class="price">Survei dulu, gratis</span></div>
-<div class="card rv"><div class="ico">☁️</div><h3>Cloud &amp; Server</h3><p>Setup VPS, Kubernetes, backup otomatis, dan monitoring 24/7 agar sistem selalu online.</p><span class="price">Mulai Rp 500 rb/bln</span></div>
-<div class="card rv"><div class="ico">🎨</div><h3>Desain &amp; Branding</h3><p>Logo, company profile PDF, template sosmed, dan panduan brand yang konsisten.</p><span class="price">Mulai Rp 1,5 jt</span></div>
-<div class="card rv"><div class="ico">🛡️</div><h3>Maintenance</h3><p>Update keamanan, backup harian, dan teknisi siaga. Fokus ke bisnis, teknis biar kami.</p><span class="price">Mulai Rp 300 rb/bln</span></div>
+<div class="svc rv"><div class="num">01</div><h3>Company Profile</h3><p>Bedakan bisnis Anda dari kompetitor dengan website yang bercerita — bukan sekadar brosur digital.</p><ul><li>Copywriting dibantu tim kami</li><li>Foto &amp; galeri project</li><li>SEO dasar + Google Maps</li></ul><span class="price">Mulai Rp 3,5 jt</span></div>
+<div class="svc rv"><div class="num">02</div><h3>Toko Online</h3><p>Jualan 24 jam tanpa admin begadang: katalog, keranjang, checkout, dan notifikasi order otomatis.</p><ul><li>Bayar transfer, QRIS &amp; e-wallet</li><li>Ongkir 4 ekspedisi otomatis</li><li>Dashboard stok &amp; laporan</li></ul><span class="price">Mulai Rp 7 jt</span></div>
+<div class="svc rv"><div class="num">03</div><h3>Aplikasi Bisnis</h3><p>Absensi, kasir, inventori, ticketing — dibuat mengikuti alur kerja Anda, bukan sebaliknya.</p><ul><li>Survei kebutuhan gratis</li><li>Bisa jalan offline intranet</li><li>Training + panduan video</li></ul><span class="price">Hitung bareng, gratis</span></div>
 </div></div></section>
 
-<section id="portfolio" style="background:var(--bg2)"><div class="wrap">
-<h2 class="sec">Portfolio Pilihan</h2><p class="sub">Contoh hasil kerja terbaru kami</p>
-<div class="grid2">
-<div class="pf rv"><div class="thumb" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">APNM</div><div class="body"><small>Web App</small><h3>Sistem Absensi APNM</h3><p style="color:var(--mut);font-size:.9rem">Absensi QR + GPS, rekap otomatis, 800 karyawan aktif harian.</p></div></div>
-<div class="pf rv"><div class="thumb" style="background:linear-gradient(135deg,#10b981,#0ea5e9)">BR</div><div class="body"><small>E-Commerce</small><h3>Brait Store</h3><p style="color:var(--mut);font-size:.9rem">Toko online fashion, 2.000+ order/bulan, integrasi 4 ekspedisi.</p></div></div>
-<div class="pf rv"><div class="thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">HD</div><div class="body"><small>Helpdesk</small><h3>IT Ticketing Corp</h3><p style="color:var(--mut);font-size:.9rem">Tiket IT + notifikasi WhatsApp otomatis, SLA di atas 95%.</p></div></div>
-<div class="pf rv"><div class="thumb" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">MG</div><div class="body"><small>Company Profile</small><h3>Mega Griya Properti</h3><p style="color:var(--mut);font-size:.9rem">Katalog unit + simulasi KPR, leads naik 3x dalam 6 bulan.</p></div></div>
+<section id="proses" style="background:#f3ecdd"><div class="wrap">
+<div class="sec-tag">Cara kerja</div>
+<h2 class="title serif">Transparan dari hari pertama.</h2>
+<p class="sub">Anda selalu tahu project sampai di mana. Tidak ada istilah "tiba-tiba molor tanpa kabar".</p>
+<div class="steps">
+<div class="step rv"><div class="dot">1</div><h4>Ngobrol santai</h4><p>30 menit via WA/Zoom. Cocok lanjut, tidak cocok tidak apa-apa — gratis.</p></div>
+<div class="step rv"><div class="dot">2</div><h4>Proposal &amp; mockup</h4><p>Dalam 3 hari Anda terima rincian biaya + contoh tampilan awal.</p></div>
+<div class="step rv"><div class="dot">3</div><h4>Dikerjakan + review</h4><p>Ada link staging yang bisa dibuka tiap minggu untuk kasih masukan.</p></div>
+<div class="step rv"><div class="dot">4</div><h4>Serah terima</h4><p>Training admin, dokumen panduan, dan garansi revisi 30 hari.</p></div>
 </div></div></section>
 
-<section id="testimoni"><div class="wrap">
-<h2 class="sec">Kata Klien</h2><p class="sub">Rating 4.9/5 dari 80+ ulasan</p>
-<div class="testi">
-<div class="t rv"><div class="stars">★★★★★</div><p>"Website baru kami terlihat jauh lebih profesional. Inquiry masuk naik signifikan sejak launching."</p><b>Hendra Gunawan</b><small>Direktur, APNM</small></div>
-<div class="t rv"><div class="stars">★★★★★</div><p>"Prosesnya rapi, ada staging untuk review, dan serah terima plus training admin. Recommended."</p><b>Sari Puspita</b><small>Owner, Brait Store</small></div>
-<div class="t rv"><div class="stars">★★★★★</div><p>"Setelah pakai maintenance mereka, kami tidak pernah pusing soal update dan backup lagi."</p><b>Andi Pratama</b><small>IT Manager, Corp</small></div>
+<section id="portfolio"><div class="wrap">
+<div class="sec-tag">Portfolio</div>
+<h2 class="title serif">Hasil kerja yang masih dipakai sampai hari ini.</h2>
+<p class="sub">Bukan mockup pajangan — semua di bawah ini sistem produksi dengan pengguna nyata.</p>
+<div class="pfgrid">
+<div class="pf rv"><img src="assets/laptops.jpg" alt="Sistem absensi"><div class="b"><span class="tag">Web App</span><h3>Absensi QR APNM — 800 karyawan/hari</h3><q>"Rekap yang dulu 3 hari, sekarang 10 menit. HR bisa fokus ke hal lain."</q><cite>— Hendra G., HRD</cite></div></div>
+<div class="pf rv"><img src="assets/developers.jpg" alt="Toko online"><div class="b"><span class="tag">E-Commerce</span><h3>Brait Store — 2.000 order/bulan</h3><q>"Checkout-nya gampang, pembeli jarang gagal bayar. Repeat order naik."</q><cite>— Sari P., Owner</cite></div></div>
 </div></div></section>
 
-<section id="kontak" style="background:var(--bg2)"><div class="wrap">
-<h2 class="sec">Minta Penawaran</h2><p class="sub">Respon &lt; 1x24 jam kerja • Konsultasi pertama gratis</p>
+<section id="harga" style="background:#f3ecdd"><div class="wrap">
+<div class="sec-tag">Harga jujur</div>
+<h2 class="title serif">Tidak ada biaya siluman.</h2>
+<p class="sub">Harga di bawah sudah termasuk domain .com 1 tahun + hosting + SSL.</p>
+<div class="price3">
+<div class="pr rv"><h3>Hemat</h3><div class="rp">Rp 3,5 jt</div><small>sekali bayar • untuk usaha baru jalan</small><ul><li>5 halamancompany profile</li><li>Form kontak + WA</li><li>1x revisi desain</li><li>Jadi dalam 14 hari</li></ul><br><a class="btn" style="width:100%;text-align:center" href="#kontak">Pilih Hemat</a></div>
+<div class="pr hot rv"><h3>Laris ★</h3><div class="rp">Rp 7,5 jt</div><small>sekali bayar • paling banyak dipilih</small><ul><li>10 halaman + blog/artikel</li><li>Copywriting dibantu</li><li>Galeri + testimoni slider</li><li>3x revisi desain</li><li>Jadi dalam 21 hari</li></ul><br><a class="btn" style="width:100%;text-align:center;background:var(--sun);color:var(--dark)!important" href="#kontak">Pilih Laris</a></div>
+<div class="pr rv"><h3>Bisnis</h3><div class="rp">Rp 15 jt+</div><small>custom • toko online / aplikasi</small><ul><li>Fitur sesuai kebutuhan</li><li>Dashboard admin</li><li>Integrasi pembayaran</li><li>Maintenance 3 bulan gratis</li></ul><br><a class="btn" style="width:100%;text-align:center" href="#kontak">Diskusi Dulu</a></div>
+</div></div></section>
+
+<section><div class="wrap">
+<div class="sec-tag">Tim</div>
+<h2 class="title serif">Dikerjakan manusia, bukan templat.</h2>
+<p class="sub">Tim kecil 9 orang — Anda kenal siapa yang mengerjakan project Anda.</p>
+<div class="team">
+<div class="tm rv"><img src="assets/man.jpg" alt="Founder"><b>Rizal Ramadhan</b><small>Founder &amp; Strategi</small></div>
+<div class="tm rv"><img src="assets/woman.jpg" alt="Desainer"><b>Nadia Salsabila</b><small>Desain &amp; UX</small></div>
+<div class="tm rv"><img src="assets/man2.jpg" alt="Programmer"><b>Dimas Prasetyo</b><small>Engineering</small></div>
+<div class="tm rv"><img src="assets/woman2.jpg" alt="CS"><b>Sinta Maharani</b><small>Client Success</small></div>
+</div></div></section>
+
+<section style="padding-top:0"><div class="wrap">
+<div class="slider rv">
+<div class="q" id="t-quote">"Website baru kami terlihat jauh lebih profesional. Inquiry masuk naik signifikan sejak launching."</div>
+<div class="who" id="t-who">Hendra Gunawan — Direktur APNM</div>
+<div class="snav"><button onclick="geser(-1)">←</button><button onclick="geser(1)">→</button><span class="sdots" id="t-pos">1 / 3</span></div>
+</div></div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+<div class="sec-tag">Tanya jawab</div>
+<h2 class="title serif">Yang sering ditanyakan.</h2>
+<div class="faq">
+<details class="rv"><summary>Berapa lama pengerjaannya?</summary><p>Company profile 14–21 hari kalender sejak materi lengkap. Toko online dan aplikasi 1–3 bulan tergantung fitur. Keterlambatan dari sisi kami = kompensasi maintenance gratis.</p></details>
+<details class="rv"><summary>Saya gaptek, bisa dibantu isi kontennya?</summary><p>Bisa. Paket Laris ke atas sudah termasuk copywriting: Anda cukup cerita via WA/Zoom, kami yang menuliskan dan menatanya. Foto produk pun bisa dibantu sesi foto (area Bandung).</p></details>
+<details class="rv"><summary>Apakah saya pegang penuh websitenya?</summary><p>Ya. Domain atas nama Anda, akses admin diserahkan penuh, plus rekaman training. Tidak ada sistem yang dikunci agar Anda "terpaksa" perpanjang ke kami.</p></details>
+<details class="rv"><summary>Bagaimana pembayarannya?</summary><p>50% di muka, 50% saat serah terima. Transfer bank, QRIS, atau kartu kredit via payment link. Kwitansi dan kontrak kerja resmi selalu ada.</p></details>
+</div></div></section>
+
+<section id="kontak" style="background:#f3ecdd"><div class="wrap">
+<div class="sec-tag">Kontak</div>
+<h2 class="title serif">Ceritakan kebutuhan Anda.</h2>
+<p class="sub">Balasan &lt; 1×24 jam kerja. Konsultasi pertama selalu gratis, tanpa komitmen.</p>
 <div class="contact">
 <form onsubmit="return kirim(event)">
-<label>Nama</label><input id="f-nama" required placeholder="Nama Anda">
-<label>Email / No. WA</label><input id="f-kontak" required placeholder="08xx / email@...">
-<label>Kebutuhan</label><select id="f-butuh"><option>Company Profile</option><option>Toko Online</option><option>Aplikasi Kustom</option><option>Cloud & Server</option><option>Lainnya</option></select>
-<label>Ceritakan kebutuhan Anda</label><textarea id="f-msg" rows="4" required placeholder="Contoh: butuh website katalog 50 produk + WA order..."></textarea>
-<br><br><button class="btn" type="submit" style="width:100%">Kirim Permintaan</button>
-<p id="f-ok" style="display:none;color:var(--ok);margin-top:10px">✓ Terkirim! Tim kami akan menghubungi Anda. (demo: data tidak benar-benar dikirim)</p>
+<h3>Formulir penawaran</h3><p>Semakin detail cerita Anda, semakin akurat hitungannya.</p>
+<label>Nama Anda</label><input id="f-nama" required placeholder="cth: Budi Santoso">
+<label>No. WA aktif</label><input id="f-kontak" required placeholder="cth: 0812xxxx">
+<label>Kebutuhan</label><select id="f-butuh"><option>Company profile</option><option>Toko online</option><option>Aplikasi custom</option><option>Belum tahu, minta saran</option></select>
+<label>Cerita singkat</label><textarea id="f-msg" rows="4" required placeholder="cth: saya punya distro, mau katalog 80 produk + order via WA..."></textarea>
+<br><br><button class="btn" type="submit" style="width:100%">Kirim → dibalas admin (Sinta)</button>
+<p id="f-ok" style="display:none;color:#4ade80;margin-top:10px">✓ Masuk! Admin kami (Sinta) akan menghubungi Anda maksimal besok jam kerja. (mode demo)</p>
 </form>
-<div class="info">
-<div>📍 <b>Kantor:</b> Jl. Merdeka No. 100, Bandung</div>
-<div>📞 <b>Tel/WA:</b> 0812-3456-7890 (Senin–Jumat 09–17)</div>
-<div>✉️ <b>Email:</b> halo@nusatech.id</div>
-<div>🕒 <b>Operasional:</b> Tiket darurat 24/7 untuk klien maintenance</div>
+<div>
+<div class="info-card"><b>📍 Workshop</b>Jl. Merdeka No. 100, Bandung — mampir boleh, bawa martabak lebih boleh.</div>
+<div class="info-card"><b>📞 0812-3456-7890</b>Senin–Jumat 09.00–17.00. Di luar itu pakai form/tiket, tetap dibaca.</div>
+<div class="info-card"><b>✉️ halo@nusatech.id</b>Untuk penawaran resmi &amp; invoice, selalu lewat email.</div>
+<div class="info-card"><b>🖥️ Lihat sistem live</b>Absensi demo: <i>demo kami</i> • Status server: <i>hijau semua</i></div>
 </div>
 </div></div></section>
 
-<footer>NusaTech © 2026 • Berjalan di atas Kubernetes (namespace: company) 🚀 • <b style="color:var(--ok)">Promo Oktober: diskon 20% semua paket!</b></footer>
-<a class="wa" href="https://wa.me/6281234567890" aria-label="WhatsApp">✆</a>
+<footer><div class="wrap">
+<div class="cols"><div><h5>NusaTech</h5>Studio web &amp; cloud dari Bandung. Fokus pada satu hal: website yang menghasilkan, bukan sekadar bagus dilihat.</div><div><h5>Jelajah</h5><a href="#layanan">Layanan</a><br><a href="#portfolio">Portfolio</a><br><a href="#harga">Harga</a></div><div><h5>Legal</h5>NIB: 1234567890123<br>CV Nusa Teknologi<br>Pajak: faktur tersedia</div></div>
+<div class="copy"><span>© 2026 NusaTech • dibuat dengan ☕ di Bandung • v2 (image)</span><span>Kubernetes ns: company</span></div>
+</div></footer>
+<a class="wa" href="https://wa.me/6281234567890?text=Halo%20NusaTech,%20saya%20mau%20tanya%20pembuatan%20website">✆</a>
 
 <script>
-// angka statistik naik animasi
-function anim(el){const t=+el.dataset.n;let c=0;const s=Math.max(1,Math.round(t/60));const i=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(i)}el.textContent=c+(t===99?'%':'+')},25)}
-// reveal saat scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('[data-n]').forEach(anim);if(e.target.dataset.n)anim(e.target);io.unobserve(e.target)}}),{threshold:.15});
+// slider testimoni
+const T=[
+{q:"Website baru kami terlihat jauh lebih profesional. Inquiry masuk naik signifikan sejak launching.",w:"Hendra Gunawan — Direktur APNM"},
+{q:"Prosesnya rapi: ada link staging tiap minggu, jadi saya bisa koreksi sebelum jadi. Tidak ada kejutan.",w:"Sari Puspita — Owner Brait Store"},
+{q:"Yang paling saya suka: mereka jujur kalau ada request yang tidak perlu. Hemat budget saya.",w:"Andi Pratama — IT Manager Corp"}];
+let ti=0;
+function geser(d){ti=(ti+d+T.length)%T.length;document.getElementById('t-quote').textContent='"'+T[ti].q+'"';document.getElementById('t-who').textContent=T[ti].w;document.getElementById('t-pos').textContent=(ti+1)+' / '+T.length}
+setInterval(()=>geser(1),9000);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-function kirim(e){e.preventDefault();const n=document.getElementById('f-nama').value.trim(),k=document.getElementById('f-kontak').value.trim(),m=document.getElementById('f-msg').value.trim();if(!n||!k||!m){alert('Mohon lengkapi semua kolom.');return false}document.getElementById('f-ok').style.display='block';e.target.reset();return false}
+// form
+function kirim(e){e.preventDefault();const n=document.getElementById('f-nama').value.trim(),k=document.getElementById('f-kontak').value.trim(),m=document.getElementById('f-msg').value.trim();if(n.length<3){alert('Nama minimal 3 huruf ya.');return false}if(!/^[0-9+ ]{9,16}$/.test(k)){alert('No. WA sepertinya kurang tepat (9-16 digit).');return false}if(m.length<10){alert('Ceritakan sedikit lebih detail (min. 10 huruf) agar hitungannya akurat.');return false}document.getElementById('f-ok').style.display='block';e.target.reset();return false}
 </script>
 </body>
 </html>

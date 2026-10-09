@@ -21,18 +21,9 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:1.27-alpine
+          image: belajar/company-web:v2
           ports:
             - containerPort: 80
-          volumeMounts:
-            # timpa index.html bawaan nginx dengan file dari ConfigMap
-            - name: site
-              mountPath: /usr/share/nginx/html/index.html
-              subPath: index.html
-      volumes:
-        - name: site
-          configMap:
-            name: company-site
 ---
 apiVersion: v1
 kind: Service
