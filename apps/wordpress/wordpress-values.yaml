@@ -1,0 +1,18 @@
+# Nilai Helm release "wordpress" (namespace wordpress) - dicatat manual 2026-10-09.
+# Cara pakai ulang: helm upgrade wordpress bitnami/wordpress -n wordpress -f wordpress-values.yaml
+# Pelajaran: chart Bitnami menulis WP_HOME/WP_SITEURL ke wp-config.php HANYA saat
+# install awal dari env WORDPRESS_HOSTNAME/WORDPRESS_SCHEME. Mengubah hostname belakangan
+# WAJIB edit wp-config.php langsung di Pod (bitnami tidak me-regenerate saat upgrade).
+wordpressUsername: admin
+service:
+  type: ClusterIP
+wordpressScheme: https
+wordpressHost: blog.brait.id
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hostname: wordpress.192.168.0.100.nip.io
+  extraHosts:
+    - name: blog.brait.id
+      path: /
+      pathType: Prefix
