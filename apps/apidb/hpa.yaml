@@ -1,0 +1,22 @@
+# Latihan 8: HPA - tambah/kurangi Pod otomatis mengikuti CPU.
+# target 50% dari requests (100m) = scale up jika rata-rata > 50m.
+# Konsep: HPA tidak tahu soal VM; ia hanya mengatur jumlah Pod.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: apidb
+  namespace: apidb
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: apidb
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
