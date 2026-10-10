@@ -1,0 +1,24 @@
+# CronJob: memicu wp-cron tiap 15 menit agar postingan terjadwal terbit TEPAT WAKTU.
+# Konsep baru: Job terjadwal ala "cron di OS", tapi sebagai objek Kubernetes.
+# Kenapa perlu: WP-Cron hanya jalan saat ada pengunjung; situs sepi = jadwal molos.
+# Objek ini di-apply manual (wordpress dikelola Helm, bukan ArgoCD).
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: wp-cron-ping
+  namespace: wordpress
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: ping
+              image: curlimages/curl:8.10.1
+              args:
+                - -s
+                - -o
+                - /dev/null
+                - http://wordpress:80/wp-cron.php
