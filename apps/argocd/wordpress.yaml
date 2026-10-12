@@ -2,6 +2,11 @@
 # - Chart dipin ke versi persis yang sedang jalan (34.1.3) agar render identik.
 # - Password TIDAK ditulis di sini: chart Bitnami membaca Secret yang sudah ada
 #   (lookup) sehingga kredensial MariaDB tetap sama. JANGAN hapus Secret manual.
+# - PENTING (pelajaran mahal 2026-10-12): ArgoCD me-render chart via `helm template`
+#   yang TIDAK mendukung lookup -> password MariaDB di-generate ACAK tiap render!
+#   Karena itu password di-PIN eksplisit di bawah (MariaDB hanya ClusterIP,
+#   tidak terekspos ke internet). Password admin WP TIDAK di-pin (tetap oQnyrzQVC2
+#   di database; ganti via Profile WP bila perlu).
 # - Setelah ini, JANGAN pakai `helm` untuk wordpress lagi (2 manajer = konflik).
 #   Release helm lama dibiarkan yatim sebagai arsip (helm list masih menunjukkannya).
 apiVersion: argoproj.io/v1alpha1
@@ -23,6 +28,12 @@ spec:
         wordpressHost: blog.brait.id
         service:
           type: ClusterIP
+        mariadb:
+          auth:
+            database: bitnami_wordpress
+            username: bn_wordpress
+            password: N9c7NnF8l4
+            rootPassword: TKAzPXOr0k
         ingress:
           enabled: true
           ingressClassName: traefik
