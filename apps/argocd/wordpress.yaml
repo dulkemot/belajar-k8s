@@ -1,0 +1,42 @@
+# Migrasi WordPress dari helm-CLI ke ArgoCD (native Helm Application).
+# - Chart dipin ke versi persis yang sedang jalan (34.1.3) agar render identik.
+# - Password TIDAK ditulis di sini: chart Bitnami membaca Secret yang sudah ada
+#   (lookup) sehingga kredensial MariaDB tetap sama. JANGAN hapus Secret manual.
+# - Setelah ini, JANGAN pakai `helm` untuk wordpress lagi (2 manajer = konflik).
+#   Release helm lama dibiarkan yatim sebagai arsip (helm list masih menunjukkannya).
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: wordpress
+    targetRevision: 34.1.3
+    helm:
+      releaseName: wordpress
+      valuesObject:
+        wordpressUsername: admin
+        wordpressScheme: https
+        wordpressHost: blog.brait.id
+        service:
+          type: ClusterIP
+        ingress:
+          enabled: true
+          ingressClassName: traefik
+          hostname: wordpress.192.168.0.100.nip.io
+          extraHosts:
+            - name: blog.brait.id
+              path: /
+              pathType: Prefix
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: wordpress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
