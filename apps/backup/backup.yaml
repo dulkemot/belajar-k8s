@@ -1,0 +1,74 @@
+# Mini-app 3: backup Postgres CT-DB otomatis tiap malam (02:00 WIB).
+# Konsep: CronJob + PVC. Backup adalah "asuransi" - tidak berguna sampai dibutuhkan,
+# jadi verifikasi restore adalah bagian dari latihan ini.
+# CATATAN: password di bawah placeholder (seperti apidb). Isi yang asli langsung
+# di cluster via: kubectl -n backup create secret generic backup-db \
+#   --from-literal=PGPASSWORD=<asli> --dry-run=client -o yaml | kubectl apply -f -
+# lalu tambahkan annotation agar ArgoCD mengabaikan: lihat README.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backup
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backup-db
+  namespace: backup
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+type: Opaque
+stringData:
+  PGHOST: "192.168.0.103"
+  PGPORT: "5432"
+  PGUSER: "app"
+  PGPASSWORD: "CHANGEME-PG-PASSWORD"
+  PGDATABASE: "belajar"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-data
+  namespace: backup
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pg-backup
+  namespace: backup
+spec:
+  schedule: "0 19 * * *" # 19:00 UTC = 02:00 WIB
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: dump
+              image: postgres:16-alpine
+              envFrom:
+                - secretRef:
+                    name: backup-db
+              command:
+                - sh
+                - -c
+                - |
+                  set -e
+                  F=/backup/belajar-$(date +%F_%H%M).sql.gz
+                  pg_dump -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$PGDATABASE" | gzip > "$F"
+                  ls -la /backup/ | tail -n 5
+                  echo "backup OK: $F"
+              volumeMounts:
+                - name: data
+                  mountPath: /backup
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: backup-data
