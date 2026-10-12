@@ -68,7 +68,7 @@ spec:
               volumeMounts:
                 - name: data
                   mountPath: /backup
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: backup-data
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: backup-data
