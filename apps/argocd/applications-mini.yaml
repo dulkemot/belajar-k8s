@@ -1,0 +1,66 @@
+# Onboarding mini-apps ke ArgoCD.
+# counter & backup: Secret live berisi password ASLI (dibuat manual),
+# Git berisi placeholder -> ignoreDifferences seperti apidb.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: counter
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/counter
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: counter
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: counter
+      jsonPointers: [/data]
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: whoami
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/whoami
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: whoami
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backup
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dulkemot/belajar-k8s.git
+    targetRevision: HEAD
+    path: apps/backup
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backup
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=true]
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: backup-db
+      jsonPointers: [/data]
